@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+    <h2>Arrays</h2>
+    <label>Informe o veículo que desejar</label>
+    <input type="text" placeholder='Veículo' id="carro" onkeypress="a">
+    <button onclick="add()">Adicionar <span id="carro"></span></button>
+    <input type="checkbox" checked id='adIni'>Adicionar no início da lista</input>
+    <p>Carros: <span id="garagem"></span></p>
+    <ul>
+
+    </ul>
+    <script>
+        const cars = ['opala ', 'fusca ', 'gol ']
+        cars.push('kombi')
+        cars.unshift('motoca')
+        document.getElementById('garagem').innerHTML = cars.toString()
+        listar()
+
+        function ativarBotao() {
+            document.getElementsByTagName('button')[0].disabled =  document.getElementById('carro').value !=''
+        }
+
+        function listar() {
+            itemLista = ''
+            for (let index = 0; index < cars.length; index++) {
+                itemLista += '<li>' + cars[index] + '</li>'
+
+            }
+            document.getElementsByTagName('ul')[0].innerHTML = itemLista
+        }
+        function add() {
+            var carro = document.getElementById('carro')
+            if (document.getElementById('adIni').checked) {
+                cars.unshift(carro.value)
+            }
+            else {
+                cars.push(carro.value)
+            }
+            document.getElementById('carro').value = ''
+            listar()
+            document.getElementsByTagName('button')[0].disabled = true
+        }
+
+
+
+    </script>
+</body>
+
+</html>

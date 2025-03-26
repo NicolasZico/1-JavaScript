@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class='bg'>
+   <div class="center">
+    <div>
+        <label>Informe seu nome</label>
+    </div>
+    <div>
+        <input type="text" placeholder="Nome Completo" id="nome"></input>
+    </div>
+    <div><label>Informe sua Idade</label>
+    </div>
+    <input type="number" placeholder="Sua idade" id=idade>
+    <div><button onclick="Confirm()">Confirmar</button>
+    </div>
+    <div>
+       
+    </div></div>
+    <p></p>
+    <script>
+        function Confirm() {
+            var nomeDigitado = document.getElementById('nome')
+            if (nomeDigitado.value === '') {
+                alert('O nome precisa ser informado')
+                nomeDigitado.focus()
+                return
+            }
+            var idade = document.getElementById('idade')
+            var paragrafo = document.getElementsByTagName('p')
+            if (idade.value >= 17) {
+                paragrafo[0].innerHTML = `Olá, ${nomeDigitado.value} bem vindo!`
+                
+                
+                
+            }else{
+                paragrafo[0].innerHTML = `Olá, ${nomeDigitado.value} você tem ${idade.value} anos, portanto é menor de idade e não pode acessar essa área`
+            }
+        }
+    </script>
+    <style>
+        .bg{
+            background-color: #252422
+        }
+        label{
+            color:#EB5E28;
+            
+            
+
+        }
+        input{
+            background-color: #FFFCF2;
+            border: 1px solid #EB5E28;
+            border-radius: 5px;
+            padding: 5px;
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+        .center{
+            text-align: center;
+            width: 210px;
+            background-color: #252422;
+            border-radius: 10px;
+            border: 2px solid #EB5E28;
+        }
+        p{
+            color: #252422;
+            background-color: #FFFCF2;
+            font-size: 15px;
+            width: 300px;
+            border-radius: 5px;
+            
+        }
+        button{
+            border-radius: 5px;
+            padding: 4px;
+            color: #EB5E28;
+            background-color: #252422;
+            border: 1px solid #EB5E28;
+        }
+        button:hover{
+            border-radius: 5px;
+            padding: 4px;
+            color: #252422;
+            background-color: #EB5E28;
+            border: 1px solid #252422;
+        }
+    </style>
+</body>
+
+</html>

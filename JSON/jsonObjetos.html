@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+           <th>Idade</th>
+           <th>Fone</th>
+        </tr>
+        <thead>
+        </thead>
+        <tbody id="dados">
+        </tbody>
+    </table>
+    <hr>
+    <button onclick="listarEmTabela()">Carregar Lista</button>
+    <script>
+        var contato = {
+            nome: 'Ana', idade:18, email:'ana@gmail.com', fone:'(47)12344444'}
+            document.getElementsByTagName('p')[0].innerHTML = contato.email
+        var listaContatos = [
+           { nome: 'Ana', idade:18, email:'ana@gmail.com', fone:'(47)12344444'},
+           { nome: 'José', idade:19, email:'js@gmail.com', fone:'(47)12344444'},
+           { nome: 'Maria', idade:17, email:'maria@gmail.com', fone:'(47)12344444'},
+           { nome: 'Lauren', idade:16, email:'len@gmail.com', fone:'(47)12344444'}
+        ]
+        function listarEmTabela (){
+            listaContatos.map((ct) => alert (ct.idade))
+        }
+        function show(contatos) {
+            const linha = `<tr>
+                <td>${contato.nome}<td>
+                     <td>${contato.email}<td> 
+                         <td>${contato.idade}<td>
+                             <td>${contato.fone}<td>
+                                <tr>`
+        document.getElementById('dados').innerHTML += linha
+        }
+
+    </script>
+</body>
+</html>

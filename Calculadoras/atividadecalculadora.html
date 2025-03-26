@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="bg">
+
+    <h2>Cálculo IMC</h2>
+    <div class="text-align">
+    <div><label>Sexo</label></div>
+    <button id="woman">Mulher</button>
+    <button id="man">Homem</button>
+    <div><label>Idade</label></div>
+    <input type="text" id="age" placeholder="Ex:34"> <label>anos</label>
+    <div><label>Altura</label></div>
+    <input type="text" id='height' placeholder="Ex:177"> <label>centímetros</label>    <div><label>Peso Corporal</label></div>
+    <input type="text" id='weigh' placeholder='Ex: 73,3'> <label>quilogramas</label>
+    <div><button onclick="calcIMC()">Confira</button></div>
+    <p id="result"></div>
+
+    </p>
+    <script>
+        function calcIMC() {
+            var weigh = document.getElementById('weigh').value
+            var height = document.getElementById('height').value
+            var result = document.getElementById('result')
+            var calc = weigh / height * height
+            if (calc < 0.00185) {
+                result.innerHTML = 'Magreza'
+            }
+            else if (calc < 0.00249) {
+                result.innerHTML = 'Normal'
+            }
+            else if (calc < 0.00299) {
+                result.innerHTML = 'Sobrepeso'
+            }
+            else if (calc < 0.00349) {
+                result.innerHTML = 'Obesidade I'
+            }
+            else if (calc < 0.00399) {
+                result.innerHTML = 'Obesidade II'
+            }
+            else if (calc > 0.0040){
+                result.innerHTML = 'Obesidade III'
+            }
+
+        }
+
+
+    </script>
+    <style>
+        .bg{
+            background-color: rgb(29, 28, 28);
+        }
+        h2{
+            color: aliceblue;
+            text-align: center;
+        }
+        label{
+            color: aliceblue;
+        }
+        div{
+            margin: 5px;
+        }
+        .align{
+            text-align: center;
+            width: 200px;
+        }
+         button{
+            border: 1px solid coral;
+            background-color: black;
+            color: aliceblue;
+            margin: 5px;
+         }
+         p{
+            color: aliceblue;
+         }
+
+
+    </style>
+</body>
+
+</html>

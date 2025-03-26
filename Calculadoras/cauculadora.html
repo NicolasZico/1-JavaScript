@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body class="bg">
+   
+    <div class="corpoCalc">
+   
+        <div class="tela">
+       <input type="text" readonly></div>
+       <div class=" container">
+        <button onclick="add">%</button>
+        <button onclick="ex">CE</button> 
+        <button onclick="ex">C</button> 
+        <button onclick="add">Ex</button>
+        <button onclick="add">¹/x</button>
+        <button onclick="add">x²</button> 
+        <button onclick="add">Raiz</button> 
+        <button onclick="add">:</button>
+        <button onclick="add">7</button>
+        <button onclick="add">8</button> 
+        <button onclick="add">9</button> 
+        <button onclick="add">x</button>
+        <button onclick="add">4</button>
+        <button onclick="add">5</button>
+        <button onclick="add">6</button> 
+        <button onclick="add">-</button> 
+        <button onclick="add">1</button>
+        <button onclick="add">2</button> 
+        <button onclick="add">3</button>
+        <button onclick="add">+</button>
+        <button onclick="add">+/-</button>
+        <button onclick="add">0</button> 
+        <button onclick="add">,</button> 
+        <button onclick="result">=</button>
+    </div>
+    </div>
+    </div>
+    <script>
+var tela = document.getElementById('tela')
+function add(valor) {
+    if ( tela.value ==='Erro') {
+        tela.value = ''
+    }
+    tela.value
+}
+    </script>
+    <style>
+        .bg{
+            background-color: #252422;
+            
+        }
+        .corpoCalc{
+            width: 340px;
+            height: 520px;
+            border: 3px outset #EB5E28;
+            border-radius: 10px;
+            position: absolute;
+           align-content: center;         
+        }
+        .container{
+            display: grid;
+            grid-template-columns: repeat( 4, 1fr);
+            border: 1px solid #252422;
+            gap: 20px;
+            
+        }
+        div > .container{
+           
+            padding: 20px;
+            color: #252422;
+        }
+        button{
+            padding: 10px;
+            background-color: #EB5E28;
+            color: aliceblue;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 1px outset aliceblue;
+        }
+        button:hover{
+            padding: 10px;
+            background-color: aliceblue;
+            color: #EB5E28;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+        .tela{
+            width: 340px;
+            height: 115px;
+         position: relative;
+         text-align: center;
+         align-content: center;
+        
+         
+         
+          
+        }
+        input{
+            width: 85%;
+            height: 70%;
+            border-radius: 10px;
+          text-align: center;
+        }
+       
+    </style>
+</body>
+</html>
