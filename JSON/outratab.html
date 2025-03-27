@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tabela Gerada com JavaScript</h1>
+
+    <div id="tabela-container"></div>
+<script>
+    // Exemplo de dados em formato JSON
+    const dadosJSON = `[
+        { "nome": "João", "idade": 28, "cidade": "São Paulo" },
+        { "nome": "Maria", "idade": 22, "cidade": "Rio de Janeiro" },
+        { "nome": "Pedro", "idade": 35, "cidade": "Belo Horizonte" }
+    ]`;
+
+    // Convertendo o JSON em um objeto JavaScript
+    const dados = JSON.parse(dadosJSON);
+
+    // Função para gerar a tabela
+    function gerarTabela(dados) {
+        let tabela = "<table border='1' style='width: 100%; border-collapse: collapse;'>";
+        tabela += "<tr><th>Nome</th><th>Idade</th><th>Cidade</th></tr>";
+
+        // Adiciona as linhas com os dados
+        dados.forEach(item => {
+            tabela += `<tr><td>${item.nome}</td><td>${item.idade}</td><td>${item.cidade}</td></tr>`;
+        });
+
+        tabela += "</table>";
+        return tabela;
+    }
+
+    // Inserir a tabela no container
+    document.getElementById("tabela-container").innerHTML = gerarTabela(dados);
+</script>
+</body>
+</html>

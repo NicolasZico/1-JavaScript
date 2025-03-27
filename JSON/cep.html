@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Digite o CEP requerido" id="cep" maxlength="9">
+    <button onclick="buscarCep()">Buscar CEP</button>
+    <div id="resultado"></div>
+    <script>
+        function buscarCep() {
+            let cep = document.getElementById('cep').value
+            if(cep.lenght !== 8){
+                alert('CEP inválido');
+                return
+            }
+            
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(res => res.json())
+                .then(data =>{
+                    if(data.erro) {
+                        document.getElementById('resultado').innerHTML = 'CEP inválido'
+                    }
+                     else{
+                        document.getElementById('resultado').innerHTML =
+                        `<p>Estado: ${res.estado} - ${res.uf}<p>`
+                        `<p>Cidade: ${res.localidade} <p>`
+                             `<p>Bairro: ${res.bairro}<p>`
+                                `<p>Rua: ${res.logradouro}<p>`                   
+                     }
+                })
+                .catch(error => console.error('Erro ao buscar CEP:', error));
+            }
+            
+        
+
+    </script>
+</body>
+</html>
