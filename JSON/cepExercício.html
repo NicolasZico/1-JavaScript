@@ -68,8 +68,7 @@
                     document.getElementById('resultado').innerHTML = `
                         <p><strong>Logradouro:</strong> ${data.logradouro}</p>
                         <p><strong>Bairro:</strong> ${data.bairro}</p>
-                        <p><strong>Cidade:</strong> ${data.localidade} - ${data.uf}</p>
-                    `;
+                        <p><strong>Cidade:</strong> ${data.localidade} - ${data.uf}</p>`;
                 }
             })
             .catch(error => console.error('Erro ao buscar CEP:', error));

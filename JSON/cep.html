@@ -1,41 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <input type="text" placeholder="Digite o CEP requerido" id="cep" maxlength="9">
-    <button onclick="buscarCep()">Buscar CEP</button>
-    <div id="resultado"></div>
+<form onsubmit="">
+    <div class="boxContainer">
+        <h1>Cadastre-se!</h1>
+        <label>Nome:</label>
+        <input type="text" placeholder="Nome Completo" required/>
+
+        <label>Email:</label>
+        <input type="text" placeholder="Seu melhor Email"required/>
+
+        <label>Telefone:</label>
+        <input type="text" placeholder="Seu telefone" required maxlength="15" oninput="formatarTelefone(this)"/>
+
+        <label>CEP:</label>
+        <input type="text" placeholder="CEP do seu endereço" id="cep" maxlength="9" onblur="buscarCep()" required 
+        oninput="this.value = this.value.replace(/(\d{5})(\d{3})/, '$1-$2')" />
+
+        <label>Estado:</label>
+        <input type="text" placeholder="Seu Estado" id="estado" required/>
+        <label>UF:</label>
+        <input type="text" placeholder='UF do Estado' id="uf" required/>
+
+        <label>Cidade:</label>
+        <input type="text" placeholder=" Sua cidade" id="localidade" required/>
+
+        <label>Bairro:</label>
+        <input type="text" placeholder="Seu bairro" id="bairro" required/>
+
+        <label>Rua:</label>
+        <input type="text" placeholder="Sua rua" id="logradouro" required/>
+
+       <div class="algBtn"> 
+        <button>Cadastrar!</button></div>
+    </div>
+    </form>
+    
     <script>
         function buscarCep() {
-            let cep = document.getElementById('cep').value
-            if(cep.lenght !== 8){
-                alert('CEP inválido');
-                return
+            let cep = document.getElementById('cep').value.replace(/\D/g, '')
+
+            if (cep.length !== 8) {
+                alert('CEP inválido, deve conter 8 dígitos!');
+                return;
             }
-            
-                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
                 .then(res => res.json())
-                .then(data =>{
-                    if(data.erro) {
-                        document.getElementById('resultado').innerHTML = 'CEP inválido'
-                    }
-                     else{
-                        document.getElementById('resultado').innerHTML =
-                        `<p>Estado: ${res.estado} - ${res.uf}<p>`
-                        `<p>Cidade: ${res.localidade} <p>`
-                             `<p>Bairro: ${res.bairro}<p>`
-                                `<p>Rua: ${res.logradouro}<p>`                   
-                     }
+                .then(data => {
+
+                    document.getElementById('estado').value = data.estado;
+                    document.getElementById('uf').value = data.uf;
+                    document.getElementById('localidade').value = data.localidade;
+                    document.getElementById('bairro').value = data.bairro;
+                    document.getElementById('logradouro').value = data.logradouro;
+
                 })
-                .catch(error => console.error('Erro ao buscar CEP:', error));
-            }
-            
-        
+        }
+        function formatarTelefone(input) {
+    let numero = input.value.replace(/\D/g, "");
+
+    if (numero.length > 10) {
+        input.value = numero.replace(/^(\d{2})(\d{1})(\d{4})(\d{4}).*/, "($1) $2$3-$4");
+    } else {
+        input.value = numero.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
+    }
+}
 
     </script>
+    <style>
+        .algBtn{
+            text-align: center;
+            margin-top: 8px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+
+        }
+
+        .boxContainer {
+            width: 300px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+        }
+
+        input {
+            margin-top: 2px;
+            margin-bottom: 8px;
+            width: 90%;
+            padding: 4px;
+            border-radius: 4px;
+            border: 1px solid silver;
+            margin-left: 8px;
+            font-size: 15px;
+        }
+
+        label {
+            margin-left: 9px;
+            font-size: 15px;
+
+        }
+        button {
+            border-radius: 4px;
+            border: 1px solid silver;
+            background-color: rgb(255, 230, 0);
+            padding: 4px;
+            width: 93%;
+
+        }
+        button:hover{
+            border: 1px solid silver;
+            background-color: rgb(255, 242, 126);
+            
+        }
+        button:focus{
+            border: 1px solid silver;
+            background-color: rgb(255, 230, 0);
+            
+        }
+    </style>
+
 </body>
+
 </html>
