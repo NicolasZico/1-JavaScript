@@ -12,13 +12,13 @@
     <div class="boxContainer">
         <h1>Cadastre-se!</h1>
         <label>Nome:</label>
-        <input type="text" placeholder="Nome Completo" required/>
+        <input type="text" placeholder="Nome Completo" id="nome"/>
 
         <label>Email:</label>
-        <input type="text" placeholder="Seu melhor Email"required/>
+        <input type="text" placeholder="Seu melhor Email" id="email"/>
 
         <label>Telefone:</label>
-        <input type="text" placeholder="Seu telefone" required maxlength="15" oninput="formatarTelefone(this)"/>
+        <input type="text" placeholder="Seu telefone" id="telefone" maxlength="15" oninput="formatarTelefone(this)"/>
 
         <label>CEP:</label>
         <input type="text" placeholder="CEP do seu endereço" id="cep" maxlength="9" onblur="buscarCep()" required 
@@ -39,7 +39,8 @@
         <input type="text" placeholder="Sua rua" id="logradouro" required/>
 
        <div class="algBtn"> 
-        <button>Cadastrar!</button></div>
+        <button onclick="cadasDados()">Cadastrar!</button>
+    <a href="acesDados.html"><strong>Acessar</strong></a>
     </div>
     </form>
     
@@ -64,6 +65,27 @@
 
                 })
         }
+        function cadasDados() {
+
+           let cliente = {
+            nome: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            telefone: document.getElementById('telefone').value,
+            cep : document.getElementById('cep').value,
+            estado: document.getElementById('estado').value,
+            uf: document.getElementById('uf').value,
+            cidade: document.getElementById('localidade').value,
+            bairro: document.getElementById('bairro').value,
+            rua: document.getElementById('logradouro').value,
+           }
+        
+           let cadastros = JSON.parse(localStorage.getItem("cliente")) || []
+            cadastros.push(cliente)
+            localStorage.setItem("cliente", JSON.stringify(cadastros));
+            
+           
+
+        }
         function formatarTelefone(input) {
     let numero = input.value.replace(/\D/g, "");
 
@@ -72,13 +94,13 @@
     } else {
         input.value = numero.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
     }
-}
-
-    </script>
+    }
+       </script>
     <style>
         .algBtn{
             text-align: center;
             margin-top: 8px;
+           
         }
         body {
             font-family: Arial, sans-serif;
@@ -129,6 +151,7 @@ input:focus{
             background-color: rgb(255, 230, 0);
             padding: 4px;
             width: 93%;
+            margin-bottom: 13px;
 
         }
         button:hover{
@@ -140,6 +163,16 @@ input:focus{
             border: 1px solid silver;
             background-color: rgb(255, 230, 0);
             
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        a:hover{
+            color: rgb(102, 102, 102);
+        }
+        a:focus{
+            color: black;
         }
     </style>
 

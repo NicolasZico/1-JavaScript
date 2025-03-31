@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>LocalStorage</h2>
+    <label for="nome">Informe seu nome</label>
+    <input type="text" id="nome" placeholder="Ex: ana"/>
+    <button onclick="gravar()">Gravar</button>
+    <hr>
+    <a href="leitura.html">Ler dados</a>
+
+    <script>
+        function gravar() {
+            let contatos = JSON.parse(localStorage.getItem('contatos'))
+            contatos.push(document.getElementById('nome').value)
+
+            localStorage.setItem('contatos', JSON.stringify(contatos))
+        }
+                /*let cesta = JSON.parse(localStorage.getItem('cesta')) ||[]
+                cesta.map(f => console.log(f))
+                console.log(cesta)*/
+                /*
+                json.parse => JSON para obj JS
+                json.stringify => obj JS para JSON
+                */
+    </script>
+</body>
+
+</html>
