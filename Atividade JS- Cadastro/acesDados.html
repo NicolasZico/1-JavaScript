@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Cadastrados</title>
+</head>
+
+<body>
+    <a href="cep.html"><strong>Voltar</strong></a>
+    <div class="container">
+        <h1>Clientes Cadastrados</h1>
+        <table >
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>CEP</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Rua</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaDados">
+                
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function salvarDados() {
+            document.getElementById("nome").removeAttribute("contenteditable");
+
+        }
+        function carregarDados() {
+            let cadastros = JSON.parse(localStorage.getItem('cliente')) || [];
+            let tabela = document.getElementById('tabelaDados');
+            tabela.innerHTML = ""; 
+    
+            if (cadastros.length === 0) {
+                tabela.innerHTML = "<tr><td colspan='8' style='text-align: center;'>Nenhum dado cadastrado até o momento.</td></tr>";
+                return;
+            }
+    
+            cadastros.forEach((cliente, index) => {
+                let row = `
+                    <tr>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'nome', this.innerText)">${cliente.nome}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'email', this.innerText)">${cliente.email}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'telefone', this.innerText)">${cliente.telefone}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'cep', this.innerText)">${cliente.cep}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'cidade', this.innerText)">${cliente.cidade}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'bairro', this.innerText)">${cliente.bairro}</td>
+                        <td contenteditable="true" oninput="atualizarDados(${index}, 'rua', this.innerText)">${cliente.rua}</td>
+                        <td>
+                            <button onclick="excluirCliente(${index})">Excluir</button>
+                             <button onclick="salvarCliente()">Salvar</button>
+                        </td>
+                    </tr>
+                `;
+                tabela.insertAdjacentHTML("beforeend", row);
+            });
+        }
+    
+        function atualizarDados(index, campo, valor) {
+            let cadastros = JSON.parse(localStorage.getItem('cliente')) || [];
+            cadastros[index][campo] = valor;
+            localStorage.setItem('cliente', JSON.stringify(cadastros));
+        }
+    
+        function excluirCliente(index) {
+            let cadastros = JSON.parse(localStorage.getItem('cliente')) || [];
+            cadastros.splice(index, 1); 
+            localStorage.setItem('cliente', JSON.stringify(cadastros));
+            carregarDados(); 
+        }
+    
+        window.onload = carregarDados;
+        //const params = new URLSearchParams(window.location.search)
+    </script>
+    
+    </script>
+    <style>
+        h1{
+            color:rgb(0, 0, 0);
+           
+            text-align: center;
+            margin: 30px;
+            padding: 5px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            margin: 7px;
+        }
+
+        a:hover {
+            color: rgb(102, 102, 102);
+        }
+
+        a:focus {
+            color: black;
+        }
+        button {
+            border-radius: 4px;
+            border: 1px solid silver;
+            background-color: rgb(255, 230, 0);
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+
+        }
+
+        button:hover {
+            border: 1px solid silver;
+            background-color: rgb(255, 242, 126);
+
+        }
+
+        button:focus {
+            border: 1px solid silver;
+            background-color: rgb(255, 230, 0);
+
+        }
+
+        
+    </style>
+</body>
+
+</html>
